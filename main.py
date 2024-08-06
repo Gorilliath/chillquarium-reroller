@@ -109,6 +109,10 @@ def feesh(event):
         open_all_packs()
         print("Adding feesh to tank...")
         put_fish_into_tank()
+        print("Opening current tank...")
+        open_current_tank()
+        pyautogui.moveTo(get_centre_point())
+        time.sleep(1)
     except:
         print(".")
 
