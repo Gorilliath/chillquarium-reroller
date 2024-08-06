@@ -4,7 +4,7 @@ import time
 from enum import Enum
 
 
-# Utility
+# Consts
 
 LOCATE_ARGS = {"grayscale": True, "confidence": 0.9}
 
@@ -16,6 +16,9 @@ class ShopItems(Enum):
     MARINE_DWELLERS = 3
     GIANTS = 4
     SPRING_PALS = 5
+
+
+# Utility
 
 
 def print_help():
@@ -34,7 +37,13 @@ def get_centre_point():
     return [screen_width / 2, screen_height / 2]
 
 
-# Granular interactions
+def image_exists(image_path):
+    try:
+        img = pyautogui.locateOnScreen(image_path, **LOCATE_ARGS)
+        if img:
+            return True
+    except:
+        return False
 
 
 def try_click_image(image_path):
@@ -46,6 +55,19 @@ def try_click_image(image_path):
         print("...Failed to click something - continuing anyway...")
 
 
+def try_click_nth_image(image_path, index):
+    try:
+        image_positions = list(pyautogui.locateAllOnScreen(image_path, **LOCATE_ARGS))
+        image = image_positions[index]
+        if image:
+            pyautogui.click(image)
+    except:
+        print("f...Failed to click nth: {index} something - continuing anyway...")
+
+
+# Atomic game interactions
+
+
 def close_any_popup_windows():
     try_click_image("img/2560-1440-close-window-button.png")
 
@@ -55,25 +77,7 @@ def open_shop():
 
 
 def buy_max_fish(shop_item):
-    try:
-        button_positions = list(
-            pyautogui.locateAllOnScreen(
-                "img/2560-1440-buy-max-button.png", **LOCATE_ARGS
-            )
-        )
-        button = button_positions[shop_item.value]
-        if button:
-            pyautogui.click(button)
-    except:
-        print(".")
-
-
-def open_current_tank():
-    try_click_image("img/2560-1440-current-tank-button.png")
-
-
-def sell_all_unlocked_fish():
-    try_click_image("img/2560-1440-sell-all-unlocked-fish-button.png")
+    try_click_nth_image("img/2560-1440-buy-max-button.png", shop_item.value)
 
 
 def open_all_packs():
@@ -101,6 +105,25 @@ def put_fish_into_tank():
     pyautogui.moveTo(x, y)
 
 
+def open_current_tank():
+    try_click_image("img/2560-1440-current-tank-button.png")
+
+
+def filter_golden_and_rainbow_to_other_tank():
+    while image_exists("img/2560-1440-common-rainbow.png") or image_exists(
+        "img/2560-1440-common-golden.png"
+    ):
+        # 0 is the 'Switch Tank' button at very top, so skip that one
+        try_click_nth_image("img/2560-1440-switch-tank.png", 1)
+        time.sleep(1)
+        try_click_image("img/2560-1440-switch-tank-gilded.png")
+        time.sleep(1)
+
+
+def sell_all_unlocked_fish():
+    try_click_image("img/2560-1440-sell-all-unlocked-fish-button.png")
+
+
 # Main logic
 
 
@@ -123,6 +146,10 @@ def main(shop_item):
         put_fish_into_tank()
         print("Opening current tank...")
         open_current_tank()
+        print("Filtering golden and rainbow to other tank...")
+        filter_golden_and_rainbow_to_other_tank()
+        print("Selling all unlocked fish...")
+        sell_all_unlocked_fish()
         pyautogui.moveTo(get_centre_point())
         time.sleep(1)
     except:
@@ -157,7 +184,7 @@ def spring_pals(event):
     main(ShopItems.SPRING_PALS)
 
 
-# Hook the functions to their keyboard events
+# Registering keyboard events
 keyboard.on_press_key("F1", freshwater_friends)
 keyboard.on_press_key("F2", rivers_and_ponds)
 keyboard.on_press_key("F3", reef_fellas)
