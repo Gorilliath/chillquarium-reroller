@@ -79,12 +79,12 @@ def sell_all_unlocked_fish():
 def open_all_packs():
     x, y = get_centre_point()
 
-    for i in range(50):
+    for i in range(30):
         pyautogui.click(x, y + 50)
 
 
 def put_fish_into_tank():
-    duration = 10  # seconds
+    duration = 9  # seconds
     end_time = time.time() + duration
 
     # Move the mouse to the starting position
@@ -95,10 +95,8 @@ def put_fish_into_tank():
 
     while time.time() < end_time:
         # Move the mouse to the left and right
-        pyautogui.moveRel(-1000, 0, duration=0.25)
-        pyautogui.moveRel(1000, 0, duration=0.25)
-
-        time.sleep(0.1)
+        pyautogui.moveRel(-1000, 0, duration=0.2)
+        pyautogui.moveRel(1000, 0, duration=0.2)
 
     pyautogui.moveTo(x, y)
 
