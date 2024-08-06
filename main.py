@@ -43,7 +43,7 @@ def try_click_image(image_path):
         if img:
             pyautogui.click(img)
     except:
-        print(".")
+        print("...Failed to click something - continuing anyway...")
 
 
 def close_any_popup_windows():
@@ -108,13 +108,16 @@ def put_fish_into_tank():
 
 def main(shop_item):
     try:
+        print("Closing any popup windows...")
         close_any_popup_windows()
         time.sleep(1)
+        print("Opening shop...")
         open_shop()
         time.sleep(1)
         print(f"Buying feesh packs ({shop_item})")
         buy_max_fish(shop_item)
         time.sleep(1)
+        print("Closing shop...")
         close_any_popup_windows()
         print("Opening packs of feesh...")
         open_all_packs()
@@ -125,7 +128,7 @@ def main(shop_item):
         pyautogui.moveTo(get_centre_point())
         time.sleep(1)
     except:
-        print(".")
+        print("... Main logic failed")
     print_help()
 
 
