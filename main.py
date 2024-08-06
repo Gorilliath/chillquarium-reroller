@@ -146,6 +146,7 @@ def main(shop_item):
         put_fish_into_tank()
         print("Opening current tank...")
         open_current_tank()
+        time.sleep(1)
         print("Filtering golden and rainbow to other tank...")
         filter_golden_and_rainbow_to_other_tank()
         print("Selling all unlocked fish...")
