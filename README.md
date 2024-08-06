@@ -3,12 +3,22 @@
 - Python
 - `pip install -r requirements.txt`
 
+## Main logic loop
+
+- Ensure any open popup window is closed
+- Open the shop
+- Buy max amount of fish (Which fish depends on which key you press)
+- Open fish packs
+- Add fish to tank
+- Open current tank
+
 ## Usage
 
 - Start the program in a terminal with `py main.py`
-- Press `F1` key to:
-  - Close any open popup window
-  - Open the shop
-  - Buy feesh
-  - Open feesh packs
-  - Add feesh to tank
+- The program will continuously listen for the following keys and, once pressed, will execute the main logic accordingly one time:
+  - F1: Freshwater Friends
+  - F2: Rivers and Ponds
+  - F3: Reef Fellas
+  - F4: Marine Dwellers
+  - F5: Giants
+  - F6: Spring Pals
