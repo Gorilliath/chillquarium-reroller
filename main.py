@@ -102,7 +102,7 @@ def feesh(event):
         open_shop()
         time.sleep(1)
         print("Buying feesh packs...")
-        buy_max_fish(ShopItems.SPRING_PALS)
+        buy_max_fish(ShopItems.FRESHWATER_FRIENDS)
         time.sleep(1)
         close_any_popup_windows()
         print("Opening packs of feesh...")
