@@ -18,6 +18,17 @@ class ShopItems(Enum):
     SPRING_PALS = 5
 
 
+def print_help():
+    print("\033[2J\033[H", end="", flush=True)
+    print("F1: Freshwater Friends")
+    print("F2: Rivers and Ponds")
+    print("F3: Reef Fellas")
+    print("F4: Marine Dwellers")
+    print("F5: Giants")
+    print("F6: Spring Pals")
+    print("Listening for keypresses...")
+
+
 def get_centre_point():
     screen_width, screen_height = pyautogui.size()
     return [screen_width / 2, screen_height / 2]
@@ -92,17 +103,17 @@ def put_fish_into_tank():
     pyautogui.moveTo(x, y)
 
 
-# Keyboard events
+# Main logic
 
 
-def feesh(event):
+def main(shop_item):
     try:
         close_any_popup_windows()
         time.sleep(1)
         open_shop()
         time.sleep(1)
-        print("Buying feesh packs...")
-        buy_max_fish(ShopItems.FRESHWATER_FRIENDS)
+        print(f"Buying feesh packs ({shop_item})")
+        buy_max_fish(shop_item)
         time.sleep(1)
         close_any_popup_windows()
         print("Opening packs of feesh...")
@@ -115,12 +126,45 @@ def feesh(event):
         time.sleep(1)
     except:
         print(".")
+    print_help()
+
+
+# Keyboard event functions
+
+
+def freshwater_friends(event):
+    main(ShopItems.FRESHWATER_FRIENDS)
+
+
+def rivers_and_ponds(event):
+    main(ShopItems.RIVERS_AND_PONDS)
+
+
+def reef_fellas(event):
+    main(ShopItems.REEF_FELLAS)
+
+
+def marine_dwellers(event):
+    main(ShopItems.MARINE_DWELLERS)
+
+
+def giants(event):
+    main(ShopItems.GIANTS)
+
+
+def spring_pals(event):
+    main(ShopItems.SPRING_PALS)
 
 
 # Hook the functions to their keyboard events
-keyboard.on_press_key("F1", feesh)
+keyboard.on_press_key("F1", freshwater_friends)
+keyboard.on_press_key("F2", rivers_and_ponds)
+keyboard.on_press_key("F3", reef_fellas)
+keyboard.on_press_key("F4", marine_dwellers)
+keyboard.on_press_key("F5", giants)
+keyboard.on_press_key("F6", spring_pals)
 
-# Keep the program running
-print("F1: Feeeeesh...")
-print("Listening for keypresses...")
+print_help()
+
+# Keep the program running and listening
 keyboard.wait()
