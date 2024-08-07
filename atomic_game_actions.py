@@ -45,13 +45,16 @@ def put_fish_into_tank():
     x, y = utility.get_centre_point()
     pyautogui.moveTo(x + 500, y - 75)
 
-    pyautogui.click()  # Assumes reduced-click mode is on
+    pyautogui.mouseDown()
 
     while time.time() < end_time:
         # Move the mouse to the left and right
         pyautogui.moveRel(-1000, 0, duration=0.2)
         pyautogui.moveRel(1000, 0, duration=0.2)
 
+    pyautogui.mouseUp()
+
+    # Reset mouse to centre
     pyautogui.moveTo(x, y)
 
 

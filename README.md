@@ -8,7 +8,6 @@
 ### Game settings/state
 
 - Ensure `img/*` files are according to your window size
-- Ensure 'Fewer clicks' option is enabled so this tool doesn't need to hold LMB when adding fish to the tank
 - Ensure you have a tank with 'Gilded' in its name to receive the golden and rainbow fish
 
 ## What this tool's main logic loop will do
