@@ -38,24 +38,32 @@ def open_all_packs():
 
 def put_fish_into_tank():
     print("Adding fish to tank")
+
     duration = 9  # seconds
     end_time = time.time() + duration
 
-    # Move the mouse to the starting position
-    x, y = utility.get_centre_point()
-    pyautogui.moveTo(x + 500, y - 75)
+    centreX, centreY = utility.get_centre_point()
+    _, _, width, _ = utility.get_window_position_and_size_as_region()
+
+    # The length of the line which will be drawn side to side to put the fish into the tank
+    line_length = (width / 3) * 2
+
+    # Move the mouse to its starting position, which is the centre offset with:
+    #  X to be the apex of the line toward the right
+    #  Y to align with the fish cards
+    pyautogui.moveTo(centreX + (line_length / 2), centreY - 75)
 
     pyautogui.mouseDown()
 
     while time.time() < end_time:
         # Move the mouse to the left and right
-        pyautogui.moveRel(-1000, 0, duration=0.2)
-        pyautogui.moveRel(1000, 0, duration=0.2)
+        pyautogui.moveRel(-line_length, 0, duration=0.2)
+        pyautogui.moveRel(line_length, 0, duration=0.2)
 
     pyautogui.mouseUp()
 
     # Reset mouse to centre
-    pyautogui.moveTo(x, y)
+    pyautogui.moveTo(centreX, centreY)
 
 
 def open_current_tank():
