@@ -14,7 +14,7 @@ def print_help():
     print("---")
     print("F11: Start/Stop")
     print("---")
-    print("Listening for keypresses...")
+    print("Listening for keypresses ...")
     print("---")
 
 
@@ -38,7 +38,7 @@ def try_click_image(image_path):
         if img:
             pyautogui.click(img)
     except:
-        print("...Failed to click something - continuing anyway...")
+        print("... Failed to click something: continuing anyway")
 
 
 def try_click_nth_image(image_path, index):
@@ -48,4 +48,4 @@ def try_click_nth_image(image_path, index):
         if image:
             pyautogui.click(image)
     except:
-        print(f"...Failed to click nth: {index} something - continuing anyway...")
+        print(f"... Failed to click nth: {index} something: continuing anyway")
