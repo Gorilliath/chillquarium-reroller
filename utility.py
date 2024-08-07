@@ -39,13 +39,13 @@ def get_window_position_and_size_as_region():
     return (0, 0, *pyautogui.size())
 
 
-def get_locate_args():
-    return {**LOCATE_ARGS, "region": get_window_position_and_size_as_region()}
-
-
-def get_centre_point():
+def get_window_centre_point():
     left, top, width, height = get_window_position_and_size_as_region()
     return [left + (width / 2), top + (height / 2)]
+
+
+def get_locate_args():
+    return {**LOCATE_ARGS, "region": get_window_position_and_size_as_region()}
 
 
 def image_exists(image_path):

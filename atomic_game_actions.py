@@ -31,7 +31,7 @@ def buy_max_fish(shop_item):
 
 def open_all_packs():
     print("Opening packs of fish")
-    x, y = utility.get_centre_point()
+    x, y = utility.get_window_centre_point()
     for i in range(30):
         pyautogui.click(x, y + 50)
 
@@ -42,7 +42,7 @@ def put_fish_into_tank():
     duration = 9  # seconds
     end_time = time.time() + duration
 
-    centreX, centreY = utility.get_centre_point()
+    centreX, centreY = utility.get_window_centre_point()
     _, _, width, _ = utility.get_window_position_and_size_as_region()
 
     # The length of the line which will be drawn side to side to put the fish into the tank

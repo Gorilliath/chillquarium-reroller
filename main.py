@@ -56,7 +56,7 @@ def main():
             actions.click_color_tank_filter()
             actions.filter_golden_and_rainbow_to_other_tank()
             actions.sell_all_unlocked_fish()
-            pyautogui.moveTo(utility.get_centre_point())
+            pyautogui.moveTo(utility.get_window_centre_point())
             time.sleep(1)
         except:
             print("... Main logic failed")
