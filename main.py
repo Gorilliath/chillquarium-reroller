@@ -31,7 +31,7 @@ def change_running_state(next_state):
         main_thread = threading.Thread(target=main)
         main_thread.start()
     elif running and main_thread:
-        print("Thread with main logic already running...")
+        print("Thread with main logic will continue indefinitely again...")
     elif not running and main_thread == None:
         print("No thread found to close...")
     elif not running and main_thread:
