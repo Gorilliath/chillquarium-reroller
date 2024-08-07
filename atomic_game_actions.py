@@ -61,6 +61,12 @@ def open_current_tank():
     time.sleep(1)
 
 
+def click_color_tank_filter():
+    print("Toggling 'Color' tank filter")
+    utility.try_click_image("img/2560-1440-color-filter-button.png")
+    time.sleep(1)
+
+
 def filter_golden_and_rainbow_to_other_tank():
     print("Filtering golden and rainbow to other tank")
     while utility.image_exists(
