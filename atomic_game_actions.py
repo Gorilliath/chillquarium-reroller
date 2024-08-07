@@ -12,6 +12,10 @@ def open_shop():
     utility.try_click_image("img/2560-1440-shop-button.png")
 
 
+def open_shop_fish_tab():
+    utility.try_click_image("img/2560-1440-shop-fish-tab-button.png")
+
+
 # Expecting `shop_item` to be instance of `ShopItems`
 def buy_max_fish(shop_item):
     utility.try_click_nth_image("img/2560-1440-buy-max-button.png", shop_item.value)
