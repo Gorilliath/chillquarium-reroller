@@ -7,7 +7,7 @@
 
 ### Game settings/state
 
-- Ensure `img/*` files are according to your window size
+- Ensure the game window is at a size without any black bars padding the actual game content (it breaks scaling of source images)
 - Ensure you have a tank with 'Gilded' in its name to receive the golden and rainbow fish
 
 ## What this tool's main logic loop will do

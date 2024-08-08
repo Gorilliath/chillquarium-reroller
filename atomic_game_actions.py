@@ -84,9 +84,9 @@ def filter_golden_and_rainbow_to_other_tank():
         "img/2560-1440-common-rainbow.png"
     ) or utility.image_exists("img/2560-1440-common-golden.png"):
         # 0 is the 'Switch Tank' button at very top, so skip that one
-        utility.try_click_nth_image("img/2560-1440-switch-tank.png", 1)
+        utility.try_click_nth_image("img/2560-1440-switch-tank-button.png", 1)
         time.sleep(1)
-        utility.try_click_image("img/2560-1440-switch-tank-gilded.png")
+        utility.try_click_image("img/2560-1440-switch-tank-gilded-button.png")
         time.sleep(1)
 
 
